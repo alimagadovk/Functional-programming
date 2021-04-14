@@ -182,7 +182,7 @@ instance MonadReader Env Test where
   reader f = Test (Just <$> reader f)
 
 instance Monad Test where
-  fail = crash . T.pack
+  --fail = crash . T.pack
   return a = Test $ do
     allowed <- asks actionAllowed
     pure $ if allowed

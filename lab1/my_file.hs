@@ -2,12 +2,17 @@ max3 x y z = (max (max x y) z)
 
 min3 x y z = (min (min x y) z)
 
+
+geomProgression b q 0 = 1
 geomProgression b q n = b * (q^^n - 1) / (q - 1)
 
+
+
 median3 x y z = r where
-    r1 = max x y
-    r2 = max y z
-    r = min r1 r2
+    r1 = max3 x y z
+    r2 = min3 x y z
+    t = x + y + z
+    r = t - r1 - r2
 
 data RGB = RGB { red :: Int, green :: Int, blue :: Int } deriving (Eq, Show, Read)
 data CMYK = CMYK { cyan :: Double, magenta :: Double, yellow :: Double, black :: Double } deriving (Eq, Show, Read)
@@ -185,5 +190,4 @@ main = do
     let d = [a, b, c]
     let x1 = NEL 1 [2, 3]
     let x2 = NEL 4 [5, 6]
-    let xs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    print(isLuhnValid xs)
+    print(head ( tailNel x2) )

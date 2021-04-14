@@ -32,14 +32,18 @@ max3, median3 :: Integer -> Integer -> Integer -> Integer
 max3 x y z = (max (max x y) z)
 
 
+minI3 :: Integer -> Integer -> Integer -> Integer
+minI3 x y z = (min (min x y) z)
+
 min3 :: Double -> Double -> Double -> Double
 min3 x y z = (min (min x y) z)
 
 
 median3 x y z = r where
-    r1 = max x y
-    r2 = max y z
-    r = min r1 r2
+    r1 = max3 x y z
+    r2 = minI3  x y z
+    t = x + y + z
+    r = t - r1 - r2
 
 -- Типы данных, описывающие цвета в моделях 
 -- RGB (https://ru.wikipedia.org/wiki/RGB), компоненты от 0 до 255
@@ -188,7 +192,7 @@ mapFuncs fs x = [(f x) | f <- fs]
 -- и возвращает True, если все они выполняются 
 -- (т.е. возвращают True) для x. Полезные стандартные функции: and, all.
 -- satisfiesAll [even, \x -> x rem 5 == 0] 10 == True
--- satisfiesAll [] 4 == True (кстати, почему?)
+-- satisfiesAll [] 4 == True (кстати, почему?). Потому что в пустом списке нет предикатов, возвращающих True, а значит ни один предикат не будет применён к аргументам
 satisfiesAll :: [a -> Bool] -> a -> Bool
 satisfiesAll [] _ = True
 satisfiesAll preds x
