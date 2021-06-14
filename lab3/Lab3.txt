@@ -1,0 +1,39 @@
+1. Реализуйте задания в Streams.hs.
+
+2. Реализуйте задания в FunctorsMonads.hs.
+
+3* (при выполнении будет добавлено до 5 баллов, так что эффективный максимум за лабораторную 25 баллов). Разработайте парсер, который принимает на вход программы в виде, описанном в комментариях в конце SimpleLang.hs из лабораторной 2:
+
+   for (Out := 1; In > 0; In := In - 1) {
+     Out := In * Out
+   }
+
+   B := 0;
+   while (A >= B * B) {
+     B++
+   };
+   B := B - 1
+
+   F0 := 1;
+   F1 := 1;
+   if (In == 0) {
+     Out := F0
+   } else {
+     if (In == 1) {
+       Out := F1
+     } else {
+       for (C := 2; C <= In; C++) {
+         T  := F0 + F1;
+         F0 := F1;
+         F1 := T;
+         Out := T
+       }
+     }
+   }
+
+и строит по ним значения типа Program. Детали языка можете выбрать сами. Библиотеки для парсеров в Haskell: parsec (входит в Haskell Platform), megaparsec (форк parsec, активно развивается: https://github.com/mrkkrp/megaparsec), attoparsec (http://hackage.haskell.org/package/attoparsec).
+
+
+Похожий язык рассматривается в
+https://wiki.haskell.org/Parsing_a_simple_imperative_language (для parsec)
+https://mrkkrp.github.io/megaparsec/tutorials/parsing-simple-imperative-language.html (для megaparsec)
